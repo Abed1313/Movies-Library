@@ -1,64 +1,103 @@
-# Project Name - Project Version
+# Movies Library App - v1.0.0
 
-**Author Name**: Abdel Rahman Radwan
+*Author Name*: [Abdel rahman radwan](https://github.com/Abed1313)
 
 ## WRRC
 LAB11:
-![WRRC Image](lab11.PNG)
+
+![WRRC(LAB11) Image](lab11.PNG)
+
 LAB12:
-![WRRC Imge](lap12.PNG)
+
+![WRRC(LAB12) Image](lap12.PNG)
+
+LAB13:
+
+![WRRC(LAB13) Image](lab13.PNG)
+
 
 ## Overview
-this project is a movie library app.
+This project is a movie library app that allows users to browse the latest movies based on categories.
+
 ## Getting Started
-1.clone this repo 
-git clone "git@github.com:Abed1313/Movies-Library.git"
+To build and run this app on your machine, follow these steps:
 
-2.navigate to the project directory
-cd Movies-Library
+1. Clone this repository to your local machine:
 
-3.install the required dependencies
-npm install
+    ```bash
+    git clone https://github.com/your-username/Movies-Library.git
+    ```
 
-4.start the server 
-npm start
+2. Navigate to the project directory:
 
-5.open the web brawser and write this aderess 
-http://localhost:3000/
+    ```bash
+    cd Movies-Library
+    ```
 
-6.now you can see your home page 
+3. Install the required dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4. Set up your API key:
+
+    - Create a `.env` file in the root directory of the project.
+    - Inside the `.env` file, add your API key as follows:
+
+      ```plaintext
+      API_KEY=your_api_key_here
+      ```
+
+5. Start the server:
+
+    ```bash
+    npm start
+    ```
+
+6. Open your web browser and go to the following address:
+
+    [http://localhost:3000/](http://localhost:3000/)
+
+7. You should now see the home page of the Movies Library app.
 
 ## Project Features
-List Movie Recipes:
-1.GET '/' for home page 
-2.GET /favorite
-3.Trending Page Endpoint: /trending
-Fetches and displays trending movies of the week.
+- *Home Page Endpoint:* `/`
+  - Displays the latest movies with details.
+  
+- *Favorite Page Endpoint:* `/favorite`
+  - Displays a welcome message for the favorite page.
+  
+- *Trending Page Endpoint:* `/trending`
+  - Fetches and displays trending movies of the week.
+  
+- *Search Page Endpoint:* `/search`
+  - Allows users to search for movies based on the provided query.
+  
+- *Popular Page Endpoint:* `/Popular`
+  - Fetches and displays Popular movies.
+  
+- *Countries Page Endpoint:* `/Countries`
+  - Fetches and displays Countries movies.
+  
+- *Add Movie Endpoint:* `/addMovie`
+  - Allows users to add movies to the database.
 
-4.Search Page Endpoint: /search
-Allows users to search for movies based on the provided query.
+- *Get Movies Endpoint:* `/getMovies`
+  - Fetches and displays all movies from the database.
 
-5.Popular Page Endpoint: /Popular
-Fetches and displays Popular movies.
-
-6.Countries Page Endpoint: /Countries
-Fetches and displays Countries movies.
-
-## Error Handling:
-1.404 Not Found: Automatically handles any undefined routes with a JSON response indicating the error.
-2.500 Internal Server Error: Captures and logs server errors, providing a JSON response for unexpected conditions.
-
-## Technical Specifications:
-1.Framework: Utilizes Express.js, a minimal and flexible Node.js web application framework.
-2.Data Handling: Reads movie data from a local JSON file (movieData/data.json), simulating a database for simplicity.
-3.Data Model: Uses a simple JavaScript constructor function (Recipe) to model each movie data entry.
-4.Server: Configured to run on port 3000, making the application accessible locally for development and testing.
+## Error Handling
+- Handles server errors (status 500) and page not found errors (status 404).
 
 ## Dependencies
-Express
-Cors
-Axios
-Dotenv
+- Express
+- Cors
+- Axios
+- Dotenv
+- Body-parser
+- PostgreSQL
 
 ## API Key
-Make sure to set up your API key in a .env file and name the variable API_KEY.
+- Make sure to set up your API key in a .env file and name the variable API_KEY.
+## Feedback
+- If you have any feedback or suggestions, please feel free to reach out to [Abdel rahman radwan](https://github.com/Abed1313).
