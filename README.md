@@ -100,4 +100,4 @@ To build and run this app on your machine, follow these steps:
 ## API Key
 - Make sure to set up your API key in a .env file and name the variable API_KEY.
 ## Feedback
-- If you have any feedback or suggestions, please feel free to reach out to [Abdel rahman radwan](https://github.com/Abed1313).
+- If you have any feedback or suggestions, please feel free to reach out to [Abdel rahman radwan](https://github.com/Abed1313)
