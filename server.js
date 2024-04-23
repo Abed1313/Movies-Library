@@ -7,6 +7,13 @@ const axios= require("axios");
 require("dotenv").config();
 const port = process.env.PORT;
 const ABI_KEY = process.env.ABI_KEY;
+const {Client} = require("pg")
+const url =`postgres://abdelradwan:123456@localhost:5432/test`;
+const client = new Client(url);
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 const recipesData=require('./movieData/data.json');
 
@@ -17,6 +24,8 @@ app.get("/trending",trendingHandelar);
 app.get("/search", searchHandelar);
 app.get("/Popular",popularHandelar);
 app.get("/Countries",countriesHandeler);
+app.post("/addMovie",addMovieHandeler);
+app.get("/getMovie",getMovieHandelr);
 
 function recipesHandeler(req,res){
     const result=[];
@@ -79,12 +88,34 @@ axios.get(url)
     res.status(500).send("internal server error");
 })
 }
+function addMovieHandeler(req, res) {
+    console.log(req.body)
+    const {original_title, release_date, poster_path, overview, comment }= req.body 
+    const  sql = `INSERT INTO moviedata(original_title, release_date, poster_path, overview, comment )
+    VALUES ($1, $2, $3, $4, $5) RETURNING *;`
+    const values = [original_title, release_date, poster_path, overview, comment] 
+    client.query(sql, values).then((reuslt)=>{
+        console.log(reuslt.rows)
+        res.status(201).json(reuslt.rows)
+    }).catch(((error) =>{
+        errorHandler(error, req, res);
+    }))
+}
+function getMovieHandelr(req,res){
+    const sql =`SELECT * FROM moviedata;`
+    client.query(sql).then((result)=>{
+            const data = result.rows
+            res.json(data)
+    })
+    .catch()
+}
 
 function MovieLab11(title,poster_path,overview){
     this.title=title;
     this.poster_path=poster_path;
     this.overview=overview;
     }
+    
 
     function MovieLab12(id,title,release_date,poster_path,overview){
         this.id=id;
@@ -110,8 +141,15 @@ app.use((req, res, next) => {
   });
 
 //3.run server make it listen
-app.listen(3000, () => {
-    console.log("listing to port 3000")
-});
+client.connect().then(()=>{
+
+    app.listen(3000, () => {
+        console.log("listing to port 3000")
+    });
+
+}
+).catch()
+
+
 
 
