@@ -15,6 +15,10 @@ LAB13:
 
 ![WRRC(LAB13) Image](lab13.PNG)
 
+LAB14:
+
+![WRRC(LAB14) Image](lab14.PNG)
+
 
 ## Overview
 This project is a movie library app that allows users to browse the latest movies based on categories.
@@ -62,29 +66,37 @@ To build and run this app on your machine, follow these steps:
 7. You should now see the home page of the Movies Library app.
 
 ## Project Features
-- *Home Page Endpoint:* `/`
+- **Home Page Endpoint:** `/`
   - Displays the latest movies with details.
   
-- *Favorite Page Endpoint:* `/favorite`
+- **Favorite Page Endpoint:** `/favorite`
   - Displays a welcome message for the favorite page.
   
-- *Trending Page Endpoint:* `/trending`
+- **Trending Page Endpoint:** `/trending`
   - Fetches and displays trending movies of the week.
   
-- *Search Page Endpoint:* `/search`
+- **Search Page Endpoint:** `/search`
   - Allows users to search for movies based on the provided query.
   
-- *Popular Page Endpoint:* `/Popular`
+- **Popular Page Endpoint:** `/Popular`
   - Fetches and displays Popular movies.
   
-- *Countries Page Endpoint:* `/Countries`
+- **Countries Page Endpoint:** `/Countries`
   - Fetches and displays Countries movies.
   
-- *Add Movie Endpoint:* `/addMovie`
+- **Add Movie Endpoint:** `/addMovie`
   - Allows users to add movies to the database.
 
-- *Get Movies Endpoint:* `/getMovies`
+- **Get Movies Endpoint:** `/getMovies`
   - Fetches and displays all movies from the database.
+
+**Update Movie Endpoint:** `/updateMovie/:id`
+  - Allows users to update movie by id details.
+- **Delete Movie Endpoint:** `/deleteMovie/:id`
+  - Allows users to delete a movie by id from the database.
+  **Get Movie Endpoint:** `/getMovie/:id`
+  - Fetches and displays movie by id from the database.
+
 
 ## Error Handling
 - Handles server errors (status 500) and page not found errors (status 404).
