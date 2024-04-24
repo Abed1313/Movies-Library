@@ -8,7 +8,7 @@ require("dotenv").config();
 const port = process.env.PORT;
 const ABI_KEY = process.env.ABI_KEY;
 const {Client} = require("pg")
-const url =`postgres://abdelradwan:123456@localhost:5432/test`;
+const url =process.env.DATABASE_URL;
 const client = new Client(url);
 const bodyParser = require("body-parser");
 
