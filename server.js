@@ -25,7 +25,11 @@ app.get("/search", searchHandelar);
 app.get("/Popular",popularHandelar);
 app.get("/Countries",countriesHandeler);
 app.post("/addMovie",addMovieHandeler);
-app.get("/getMovie",getMovieHandelr);
+app.get("/getMovies",getMoviesHandelr);
+app.put("/UpdateMovie/:id", updateMovieHandeler);
+app.delete('/deleteMovie/:id',deleteMovieHandeler);
+app.get("/getMovie/:id",getMovieHandeler);
+
 
 function recipesHandeler(req,res){
     const result=[];
@@ -97,17 +101,50 @@ function addMovieHandeler(req, res) {
     client.query(sql, values).then((reuslt)=>{
         console.log(reuslt.rows)
         res.status(201).json(reuslt.rows)
-    }).catch(((error) =>{
-        errorHandler(error, req, res);
-    }))
+    }).catch()
+       
+    
 }
-function getMovieHandelr(req,res){
+function getMoviesHandelr(req,res){
     const sql =`SELECT * FROM moviedata;`
     client.query(sql).then((result)=>{
             const data = result.rows
             res.json(data)
     })
     .catch()
+}
+function updateMovieHandeler(req,res){
+    const id = req.params.id
+    const {original_title, release_date, poster_path, overview, comment }= req.body 
+    const  sql = `UPDATE moviedata SET original_title=$1, release_date=$2, poster_path=$3, overview=$4, comment=$5 WHERE id= ${id} RETURNING *;`
+    const values = [original_title,release_date,poster_path,overview,comment] 
+    client.query(sql, values).then((reuslt)=>{
+        console.log(reuslt.rows)
+        res.status(200).json(reuslt.rows)
+    }).catch(((error) =>{
+        errorHandler(error, req, res);
+    }))
+
+}
+function deleteMovieHandeler(req,res){
+    const id = req.params.id
+    const  sql = `DELETE FROM moviedata WHERE id= ${id} RETURNING *;`
+    client.query(sql).then((reuslt)=>{
+        console.log(reuslt.rows)
+        res.status(204).json(reuslt.rows)
+    }).catch(((error) =>{
+        errorHandler(error, req, res);
+    }))
+}
+function getMovieHandeler(req,res){
+    const id = req.params.id;
+    const sql=`SELECT * FROM moviedata WHERE id = ${id} ;`
+    client.query(sql).then((reuslt)=>{
+        console.log(reuslt.rows)
+        res.status(200).json(reuslt.rows)
+    }).catch(((error) =>{
+        errorHandler(error, req, res);
+    }))
 }
 
 function MovieLab11(title,poster_path,overview){
@@ -143,8 +180,8 @@ app.use((req, res, next) => {
 //3.run server make it listen
 client.connect().then(()=>{
 
-    app.listen(3000, () => {
-        console.log("listing to port 3000")
+    app.listen(port, () => {
+        console.log(`listing to port ${port}`)
     });
 
 }
