@@ -123,8 +123,7 @@ function updateMovieHandeler(req,res){
         res.status(200).json(reuslt.rows)
     }).catch(((error) =>{
         errorHandler(error, req, res);
-    }))
-
+    })) 
 }
 function deleteMovieHandeler(req,res){
     const id = req.params.id
